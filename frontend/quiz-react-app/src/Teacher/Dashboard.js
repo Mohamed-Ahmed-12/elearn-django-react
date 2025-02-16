@@ -142,7 +142,7 @@ export default function Dashboard() {
                     </Card>
 
                     <Card className="border shadow-sm rounded my-2 p-4">
-                        <Tab.Content>
+                        <Tab.Content style={{overflow: "scroll"}}>
                             <Tab.Pane eventKey={contentName}>{renderContent()}</Tab.Pane>
                         </Tab.Content>
                     </Card>

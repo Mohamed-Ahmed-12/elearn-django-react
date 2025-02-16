@@ -181,3 +181,14 @@ class StudentAnswer(APIView):
     except Exception as e:
       return Response({'error': 'An unexpected error occurred', 'details': str(e)},status=status.HTTP_500_INTERNAL_SERVER_ERROR)
       
+      
+class CalenderView(APIView):
+  @check_authorization
+  def get(self,request):
+    ''' Get Teacher dates to render in calender '''
+    try:
+      teacher = request.user
+      quizzes_date = Quiz.objects.filter(author = teacher).values('title','start')
+      return Response(quizzes_date, status=status.HTTP_200_OK)
+    except Exception as e:
+      return Response({'error': 'An unexpected error occurred', 'details': str(e)},status=status.HTTP_500_INTERNAL_SERVER_ERROR)

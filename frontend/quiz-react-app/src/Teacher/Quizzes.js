@@ -15,6 +15,7 @@ const StatusBadge = ({ isActive }) => (
 export default function Quizzes() {
     const [show, setShow] = useState(false);
     const quizzes = useSelector((state) => state.quiz.quizzes);
+    console.log(quizzes)
     // const questions = useSelector((state) => state.quiz.questions);
     const [selectedQuiz, setSelectedQuiz] = useState([]);
     const dispatch = useDispatch();
@@ -110,7 +111,7 @@ export default function Quizzes() {
                 </Modal.Body>
             </Modal>
             <h4 className="text-indigo-50 font-bold" style={{ fontFamily: "sans-serif" }}>Quizzes</h4>
-            <Table striped bordered hover>
+            <Table striped bordered hover >
                 <thead>
                     <tr>
                         <th>
@@ -121,10 +122,11 @@ export default function Quizzes() {
                         <th>Start Time</th>
                         <th>End Time</th>
                         <th>Status</th>
+                        <th>No. questions</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody >
                     {quizzes.length === 0 ? (
                         <tr>
                             <td colSpan="7" className="text-center">
@@ -143,6 +145,9 @@ export default function Quizzes() {
                                 <td>{formatDate(quiz.end)}</td>
                                 <td>
                                     <StatusBadge isActive={quiz.is_active} />
+                                </td>
+                                <td>
+                                    {quiz.exam_questions.length} questions
                                 </td>
                                 <td>
                                     <Button
